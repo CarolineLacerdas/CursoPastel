@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Cadastro</title>
+    </head>
+
+    <body>
+        <div>
+            <form>
+                <div>
+                    <label>Nome</label>
+                    <input type="text" id="nome" name="nome" required/>
+                </div>
+                <br />
+                <div>
+                    <label>Sabor</label>
+                    <input type="text" id="sabor" name="sabor" required/>
+                </div>
+                <br />
+                <div>
+                    <label>Descrição</label>
+                    <textarea id="descricao" name="descricao" />Descreva seu pastel!!!
+                    </textarea>
+                </div>
+                <br />
+                <div>
+                    <label>Preço</label>
+                    <input type="text" id="preco" name="preco" required/>
+                </div>
+                <br />
+                <div>
+                    <label>Qtd</label>
+                    <input type="text" id="qtd" name="qtd" />
+                </div>
+                <br />
+                <div>
+                    <button id="gravar" name="gravar" onclick="criarPastel">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </body>
+    
+    <script>
+        function criarPastel() {
+            var pastel = {
+                nome: document.getElementById("nome").value,
+                sabor: document.getElementById("sabor").value,
+                descricao: document.getElementById("descricao").value,
+                preco: document.getElementById("preco").value,
+                qtd: document.getElementById("qtd").value
+            }
+        }
+    </script>
+
+</html>
