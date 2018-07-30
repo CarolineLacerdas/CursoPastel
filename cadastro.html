@@ -6,40 +6,53 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Cadastro</title>
+        
+        <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     </head>
 
     <body>
-        <div>
+            <div class="container-fluid">
+
+
             <form>
-                <div>
-                    <label>Nome</label>
-                    <input type="text" id="nome" name="nome" required/>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" name="nome" class="form-control" required>
+                    </div>
                 </div>
-                <br />
-                <div>
-                    <label>Sabor</label>
-                    <input type="text" id="sabor" name="sabor" required/>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for"sabor">Sabor</label>
+                        <input type="text" id="sabor" name="sabor" class="form-control" required/>
+                    </div>
                 </div>
-                <br />
-                <div>
-                    <label>Descrição</label>
-                    <textarea id="descricao" name="descricao" />Descreva seu pastel!!!
-                    </textarea>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="descricao">Descrição</label>
+                        <textarea id="descricao" name="descricao" class="form-control" rows="3"></textarea>
+                    </div>
                 </div>
-                <br />
-                <div>
-                    <label>Preço</label>
-                    <input type="text" id="preco" name="preco" required/>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="preco">Preço</label>
+                        <input type="text" id="preco" name="preco" class="form-control" required/>
+                    </div>
                 </div>
-                <br />
-                <div>
-                    <label>Qtd</label>
-                    <input type="text" id="qtd" name="qtd" />
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="qtd">Qtd</label>
+                        <input type="text" id="qtde" name="qtde" class="form-control"/>
+                    </div>
                 </div>
-                <br />
-                <div>
-                    <button id="gravar" name="gravar" onclick="criarPastel">Cadastrar</button>
-                </div>
+                    <button type="button" class="btn btn-primary" id="gravar" name="gravar" onclick="criarPastel()">Cadastrar</button>
+                        
             </form>
         </div>
     </body>
@@ -51,8 +64,22 @@
                 sabor: document.getElementById("sabor").value,
                 descricao: document.getElementById("descricao").value,
                 preco: document.getElementById("preco").value,
-                qtd: document.getElementById("qtd").value
+                qtde: document.getElementById("qtde").value
             }
+        
+            $.ajax({
+                url: "https://talentosapipastel.herokuapp.com/pastel",
+                type: "POST",
+                data: JSON.stringify(pastel),
+               contentType: "application/json"
+            }).done(function (data) {
+                alert("Sucesso! Pastel cadastrado! :-)");
+            }).fail(function (retorno) {
+                console.log(retorno);
+                alert("Ocorreu um erro! :-(");
+            });
+
+        
         }
     </script>
 
